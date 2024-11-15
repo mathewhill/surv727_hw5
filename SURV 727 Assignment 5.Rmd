@@ -34,6 +34,13 @@ cs_key <- trimws(read_file("C:/Users/mathe/OneDrive/Documents/census-key.txt"))
 census_api_key(cs_key) #establishing it has API key
 ```
 
-
+```{r}
+acs_il_c <- getCensus(name = "acs/acs5", 
+                      vintage = 2016, 
+                      vars = c("NAME", "B01003_001E", "B19013_001E", "B19301_001E"), 
+                      region = "county:*", regionin = "state:17", key = cs_key) %>% 
+  rename(pop = B01003_001E, hh_income = B19013_001E, income = B19301_001E)
+head(acs_il_c)
+```
 
 
