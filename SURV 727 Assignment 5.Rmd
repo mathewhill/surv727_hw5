@@ -202,4 +202,14 @@ result_3_clusters <- kmeans_clustering(3)
 head(result_3_clusters)
 ```
 
+## We want to utilize this function to iterate over multiple Ks (e.g., K = 2, ..., 10) and each time add the resulting cluster membership as a new variable to our (cleaned) original data frame (acs_il_t). There are multiple solutions for this task, e.g. think about the apply family or for loops.
+```{r}
+# for loop for K values 2 to 10
+for (K in 2:10) {
+  result <- kmeans_clustering(K)
+  colname <- paste("cluster_K", K, sep = "_")
 
+  acs_il_t[[colname]] <- result$cluster
+  #result column
+}
+```
