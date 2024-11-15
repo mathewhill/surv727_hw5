@@ -115,5 +115,17 @@ acs_il_t <- getCensus(name = "acs/acs5",
 head(acs_il_t)
 ```
 
+# k-Means
 
+## As before, clean our data for clustering census tracts based on population, average household income and per capita income.
+```{r}
+acs_il_t <- acs_il_t %>%
+  mutate(
+    subregion = tolower(gsub("Census Tract [0-9.]+, | County, Illinois", "", NAME))
+  ) %>%
+  na.omit()  
+
+head(acs_il_t)
+
+```
 
