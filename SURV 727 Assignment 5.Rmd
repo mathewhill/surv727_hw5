@@ -43,4 +43,12 @@ acs_il_c <- getCensus(name = "acs/acs5",
 head(acs_il_c)
 ```
 
+## Pull map data for Illinois into a data frame.
+```{r}
+il_map <- map_data("county", region = "illinois")
+head(il_map)
+```
+
+
+
 
