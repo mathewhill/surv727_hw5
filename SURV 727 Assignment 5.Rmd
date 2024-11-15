@@ -24,6 +24,16 @@ library(factoextra)
 library(ggdendro)
 ```
 
+# Exploring ACS Data
+
+## In this notebook, we use the Census API to gather data from the American Community Survey (ACS).
+```{r}
+cs_key <- trimws(read_file("C:/Users/mathe/OneDrive/Documents/census-key.txt"))
+#Reading API key from .txt file
+
+census_api_key(cs_key) #establishing it has API key
+```
+
 
 
 
