@@ -49,6 +49,15 @@ il_map <- map_data("county", region = "illinois")
 head(il_map)
 ```
 
+## Join the ACS data with the map data. Note that il_map has a column subregion which includes county names. We need a corresponding variable in the ACS data to join both data sets. This needs some transformations, among which the function tolower() might be useful. Call the joined data acs_map.
+```{r}
+acs_il_c <- acs_il_c %>%
+  mutate(subregion = tolower(gsub(" County, Illinois", "", NAME)))
 
+acs_map <- il_map %>%
+  left_join(acs_il_c, by = "subregion")
+
+head(acs_map)
+```
 
 
