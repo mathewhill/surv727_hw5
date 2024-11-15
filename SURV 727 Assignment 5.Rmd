@@ -180,3 +180,26 @@ result <- left_join(cluster_means, most_frequent_county, by = "cluster")
 
 print(result)
 ```
+
+## As you might have seen earlier, it’s not always clear which number of clusters is the optimal choice. To automate K Means clustering, program a function based on kmeans() that takes K as an argument. You can fix the other arguments, e.g. such that a specific dataset is always used when calling the function.
+```{r}
+kmeans_clustering <- function(K) {
+  clustering_data <- acs_il_t %>%
+    select(pop, hh_income, income) %>%
+    scale()  # Standardize the data
+  
+  kmeans_result <- kmeans(clustering_data, centers = K, nstart = 10)
+  
+  acs_il_t$cluster <- kmeans_result$cluster
+  #cluster assignments
+  
+  return(acs_il_t)
+}
+
+# K = 3
+result_3_clusters <- kmeans_clustering(3)
+
+head(result_3_clusters)
+```
+
+
