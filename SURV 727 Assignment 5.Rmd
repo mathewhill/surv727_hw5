@@ -147,6 +147,15 @@ abline(v = which.min(diff(wss) > 0), col = "red", lty = 2)
 ```
 K = 3 will be optimal
 
+## Run kmeans() for the optimal number of clusters based on the plot above.
+```{r}
+# K = 3 
+set.seed(727)  #setting seed
+kmeans_result <- kmeans(clustering_data, centers = 3, nstart = 10)
 
+acs_il_t$cluster <- kmeans_result$cluster
+
+head(acs_il_t)
+```
 
 
