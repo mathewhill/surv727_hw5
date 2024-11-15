@@ -213,3 +213,9 @@ for (K in 2:10) {
   #result column
 }
 ```
+
+## Finally, display the first rows of the updated data set (with multiple cluster columns).
+```{r}
+head(acs_il_t)
+```
+
