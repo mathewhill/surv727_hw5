@@ -60,4 +60,12 @@ acs_map <- il_map %>%
 head(acs_map)
 ```
 
+## After you do this, plot a map of Illinois with Counties colored by per capita income.
+```{r}
+ggplot(acs_map) + 
+  geom_polygon(aes(x = long, y = lat, group = group, fill = income))
+```
+
+
+
 
