@@ -129,3 +129,24 @@ head(acs_il_t)
 
 ```
 
+## Since we want to use K Means in this section, we start by determining the optimal number of K that results in Clusters with low within but high between variation. Plot within cluster sums of squares for a range of K (e.g. up to 20).
+```{r}
+clustering_data <- acs_il_t %>%
+  select(pop, hh_income, income) %>%
+  scale()  
+
+wss <- sapply(1:20, function(k) {
+  kmeans(clustering_data, centers = k, nstart = 10)$tot.withinss
+})
+
+plot(1:20, wss, type = "b", pch = 19, frame = FALSE,
+     xlab = "Number of Clusters (K)",
+     ylab = "Total Sum of Squares Within Each Cluster",
+     main = "Elbow Method")
+abline(v = which.min(diff(wss) > 0), col = "red", lty = 2)
+```
+K = 3 will be optimal
+
+
+
+
