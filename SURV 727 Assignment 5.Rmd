@@ -98,7 +98,22 @@ ggplot(acs_map, aes(long, lat, group = group, fill = factor(cluster))) +
   )
 ```
 
+# Census Tracts
 
+## For the next section we need ACS data on a census tract level. We use the same variables as before.
+```{r}
+acs_il_t <- getCensus(name = "acs/acs5", 
+                      vintage = 2016, 
+                      vars = c("NAME", "B01003_001E", "B19013_001E", "B19301_001E"), 
+                      region = "tract:*", 
+                      regionin = "state:17", 
+                      key = cs_key) %>% 
+  mutate_all(~ifelse(. == -666666666, NA, .)) %>%  
+  rename(pop = B01003_001E, 
+         hh_income = B19013_001E, 
+         income = B19301_001E)
+head(acs_il_t)
+```
 
 
 
